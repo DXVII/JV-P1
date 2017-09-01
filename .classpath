@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="Slick Libraries/Jar Files/jinput.jar"/>
 	<classpathentry kind="lib" path="Slick Libraries/Jar Files/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="P1WS/Slick Libraries/Windows"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="JV-P1/Slick Libraries/Windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="Slick Libraries/Jar Files/slick.jar"/>
