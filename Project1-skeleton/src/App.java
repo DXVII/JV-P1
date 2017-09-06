@@ -44,6 +44,9 @@ public class App extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         // Get data about the current input (keyboard state).
         Input input = gc.getInput();
+        if(input.isKeyPressed(Input.KEY_ESCAPE)){
+            System.exit(0);
+        }
         world.update(input, delta);
         //Commands given to sprite
         player.update(input,delta);
