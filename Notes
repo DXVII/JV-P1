@@ -1,0 +1,47 @@
+Tile
+attributes:
+type
+location
+passable(?)
+
+
+World:
+attributes:
+dimensions (note = App.TILE_SIZE * x or y)
+2D array of tile types
+
+setxDim()
+setyDim()
+setFloorLayout() =  floor(from csv reader)
+
+Loader:
+Read CSV
+    final static, XCOORD = 1, YCOORD = 2, TILE_ID = 0
+    first line = readline -> xdim, ydim
+    floor = new String[xdim][ydim]
+    then for loop of readline until EOF
+    split by ","
+    floor[line[xdim]][line[ydim]] = line[TILE_ID]
+
+
+
+identifyTile():
+- floor
+- stone
+- target
+
+
+
+
+
+
+Tasks:
+Take first line of CSV -> dimensions of World
+Make tile class
+Read csv file into 2D array
+Make 2D array of tile classes
+
+
+Ideas
+
+their sprite = my tile = superclass?

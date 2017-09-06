@@ -17,7 +17,7 @@ public class App extends BasicGame {
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
     public static final int TILE_SIZE = 32;
-    public static final String SPRITE_LOC = "res/player_left.png";
+    public static final String PLAYER_LOC = "res/player_left.png";
 
     public App() {
       super("Shadow Blocks");
@@ -25,13 +25,13 @@ public class App extends BasicGame {
 
 
     private World world;
-    private Sprite sprite;
+    private Sprite player;
 
     @Override
     public void init(GameContainer gc) throws SlickException {
     	world = new World();
         // Sprite starts in middle
-        sprite = new Sprite(SPRITE_LOC,SCREEN_WIDTH/2,SCREEN_HEIGHT/2);
+        player = new Sprite(PLAYER_LOC,SCREEN_WIDTH/2,SCREEN_HEIGHT/2);
     }
 
 
@@ -44,9 +44,12 @@ public class App extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         // Get data about the current input (keyboard state).
         Input input = gc.getInput();
+        if(input.isKeyPressed(Input.KEY_ESCAPE)){
+            System.exit(0);
+        }
         world.update(input, delta);
         //Commands given to sprite
-        sprite.update(input,delta);
+        player.update(input,delta);
     }
 
 
@@ -58,7 +61,7 @@ public class App extends BasicGame {
     public void render(GameContainer gc, Graphics g) throws SlickException {
     	world.render(g);
         //Draw sprite in new location movement calculated
-        sprite.render(g);
+        player.render(g);
     }
 
 
