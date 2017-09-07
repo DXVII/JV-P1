@@ -3,11 +3,19 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
+//player is an extension of Sprite
+
+/*
+player variant has extra:
+tile location (to check against "Loader.isBlocked")
+
+Still unsure about the rendering and how it works with super classes
+*/
 
 public class Player extends Sprite {
 
 	public static final String PLAYER_LOC = "res/player_left.png";
-
+	//xPos == tiles, x == pixels
 	private int xPos;
 	private int yPos;
 	private static final int STEP = 1;
@@ -15,7 +23,7 @@ public class Player extends Sprite {
 
 	public Player(String image_src, float x, float y, int xPos, int yPos)
 	throws SlickException {
-		Sprite(image_src,x,y);
+		super(image_src,x,y);
 		this.xPos = xPos;
 		this.yPos = yPos;
 		//this.image_src = image_src;

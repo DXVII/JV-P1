@@ -2,8 +2,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import org.newdawn.slick.SlickException;
+
+
+/*
+Loader class has:
+isBlocked: 		static 2D boolean  array to track if a position in a map is not traversible
+
+loadSprite: 	- points to Player player and assigns its pixel location
+				  and 2D array tile postion
+ 				- creates 1D array of Sprites passing in pixel location into them
+				- returns above array(1D) to floorArray in World
+*/
 
 public class Loader {
 	public static final int TILE_TYPE = 0;
