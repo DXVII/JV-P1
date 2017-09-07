@@ -13,6 +13,7 @@ public class Sprite {
 		this.xPos = x;
 		this.yPos = y;
 		this.image_src = image_src;
+
 		try {
 			this.pic = new Image(image_src);
 		} catch (SlickException e) {
@@ -20,6 +21,7 @@ public class Sprite {
 			e.printStackTrace();
 		}
 	}
+
 
 	public void update(Input input, int delta) {
 		if(image_src.equals(App.PLAYER_LOC)){

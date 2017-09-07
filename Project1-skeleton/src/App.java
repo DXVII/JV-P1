@@ -18,6 +18,7 @@ public class App extends BasicGame {
     public static final int SCREEN_HEIGHT = 600;
     public static final int TILE_SIZE = 32;
     public static final String PLAYER_LOC = "res/player_left.png";
+    public static final String SPRITE_TXT = "res/levels/0.lvl";
 
     public App() {
       super("Shadow Blocks");
