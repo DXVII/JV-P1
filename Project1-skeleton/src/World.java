@@ -19,7 +19,7 @@ public class World {
 	private Sprite[] floorArray;
 
 	public World() throws FileNotFoundException, SlickException {
-		floorArray = Loader.loadSprites("res/levels/0.lvl");
+		floorArray = Loader.loadSprites(App.LVL_TXT);
 	}
 
 	//update only affect player sprite
@@ -34,10 +34,10 @@ public class World {
 		}
 		player.render(g);
 	}
-// actualy not sure if this belongs here or somewhere else 
+// Actually not sure if this belongs here or somewhere else
 	//getset player
 	public Player getPlayer() {
-        return this.player;
+        return player;
     }
 
     public static void setPlayer(Player player) {
