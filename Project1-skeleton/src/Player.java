@@ -8,8 +8,8 @@ public class Player extends Sprite {
 
 	public static final String PLAYER_LOC = "res/player_left.png";
 
-	private float xPos;
-	private float yPos;
+	private int xPos;
+	private int yPos;
 	private static final int STEP = 1;
 	//private String image_src;
 

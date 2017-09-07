@@ -14,7 +14,7 @@ public class World {
 	public static final String WALL_LOC = "res/wall.png";
 	public static final String TARGET_LOC = "res/target.png";
 
-	private static Player player;
+	private Player player;
 	private Sprite[] floorArray;
 
 	public World() throws FileNotFoundException, SlickException {
