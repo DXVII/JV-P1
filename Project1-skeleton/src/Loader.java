@@ -16,15 +16,18 @@ loadSprite: 	- points to Player player and assigns its pixel location
 */
 
 public class Loader {
+	//Used for CSV: no magic numbers
+	//sprite indexing
 	public static final int TILE_TYPE = 0;
 	public static final int X_COORD = 1;
 	public static final int Y_COORD = 2;
-
+	//dimension indexing
 	public static final int X_POS = 0;
 	public static final int Y_POS = 1;
 
-
+	//blcok array is 2D list of where a player cannot move
 	private static boolean[][] blockArray;
+	// array lsit method used for unknown length of txt doc
 	private static ArrayList<Sprite> list;
 	/**
 	 * Loads the sprites from a given file.
@@ -44,7 +47,7 @@ public class Loader {
 			int yDim = Integer.parseInt(txtRow[Y_POS]);
 			blockArray = new boolean[xDim][yDim];
 
-			//xyDim converted to xyshift to centre
+			//xyDim converted to xyPix to centre
 			xDim = (App.SCREEN_WIDTH-(App.TILE_SIZE*xDim))/2;
 			yDim = (App.SCREEN_HEIGHT-(App.TILE_SIZE*yDim))/2;
 			list = new ArrayList<Sprite>();
@@ -66,14 +69,15 @@ public class Loader {
 				yPix = (float) (App.TILE_SIZE*yCoord + yDim);
 
 				if(!tileType.equals("player")) {
+					//generating floorplan
 					list.add(new Sprite(tileType, xPix, yPix);
-
+					//generating array of blocked walls
 					if(tileType.equals("wall")){
 						blockArray[xCoord][yCoord] = true;
 					} else {
 						blockArray[xCoord][yCoord] = false;
 					}
-
+					
 				} else {
 					// get&setPlayer
 					World.setplayer(new Player(tileType, xPix, yPix, xCoord, yCoord));
