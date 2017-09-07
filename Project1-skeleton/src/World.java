@@ -1,20 +1,24 @@
 
 
+import java.io.FileNotFoundException;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 
 public class World {
-	public static final int X_POS = 0;
-	public static final int Y_POS = 1;
-	public static int[] dim;
-	public static Sprite player;
-	public Sprite[][] floorArray;
-	public static boolean[][] blockArray;
+	// THings that exist in this world
+	public static final String PLAYER_LOC = "res/player_left.png";
+	public static final String FLOOR_LOC = "res/floor.png";
+	public static final String STONE_LOC = "res/stone.png";
+	public static final String WALL_LOC = "res/wall.png";
+	public static final String TARGET_LOC = "res/target.png";
 
-	public World() {
-		World.dim = new int[2];s
-		this.floorArray = Loader.loadSprites("res/levels/0.lvl");
-		
+	private static Player player;
+	private Sprite[] floorArray;
+
+	public World() throws FileNotFoundException, SlickException {
+		floorArray = Loader.loadSprites("res/levels/0.lvl");
 	}
 
 	public void update(Input input, int delta) {
@@ -22,11 +26,19 @@ public class World {
 	}
 
 	public void render(Graphics g) {
-		//for loop
-		//floorArray.render(g);
+		for (Sprite spriteTile : floorArray) {
+			spriteTile.render(g);
+		}
 		player.render(g);
 	}
 
 	//getset player
+	public Player getPlayer() {
+        return this.player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
 }
