@@ -69,18 +69,19 @@ public class Loader {
 				yPix = (float) (App.TILE_SIZE*yCoord + yDim);
 
 				if(!tileType.equals("player")) {
-					//generating floorplan
-					list.add(new Sprite(tileType, xPix, yPix);
+					//generating floor plan
+					list.add(new Sprite(tileType, xPix, yPix));
 					//generating array of blocked walls
 					if(tileType.equals("wall")){
 						blockArray[xCoord][yCoord] = true;
 					} else {
 						blockArray[xCoord][yCoord] = false;
 					}
-					
+
 				} else {
 					// get&setPlayer
-					World.setplayer(new Player(tileType, xPix, yPix, xCoord, yCoord));
+					Player player = new Player(tileType, xPix, yPix, xCoord, yCoord);
+					World.setPlayer(player);
 				}
 
     		}
@@ -98,7 +99,5 @@ public class Loader {
 			return false;
 		}
 	}
-
-
-	//getter and setter for xyPixShift
+	
 }

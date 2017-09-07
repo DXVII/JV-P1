@@ -12,15 +12,15 @@ All Sprites have:
 */
 public class Sprite {
 
-	private float x;
-	private float y;
+	private static float x;
+	private static float y;
 	//private String tileID;
-	private Image pic;
+	private static Image pic;
 	//private String image_src;
 
 	public Sprite(String image_src, float x, float y) throws SlickException {
-		this.x = x;
-		this.y = y;
+		Sprite.x = x;
+		Sprite.y = y;
 		//this.tileID = image_src;
 		if(image_src.equals("floor")){
 			pic = new Image(World.FLOOR_LOC);
@@ -42,5 +42,34 @@ public class Sprite {
 	public void render(Graphics g) {
 		pic.draw(x,y);
 	}
+	
+//Getters 'n' Setters	
+	//pic
+	public Image getPic() {
+        return pic;
+    }
 
+    public static void setPic(Image playerPic) {
+        pic = playerPic;
+    }
+    
+    
+    //xPixel
+    public float getX() {
+        return x;
+    }
+
+    public static void setX(float xPixel) {
+        x = xPixel;
+    }
+    
+    
+    //yPixel
+    public float getY() {
+        return x;
+    }
+
+    public static void setY(float yPixel) {
+        y = yPixel;
+    }
 }
