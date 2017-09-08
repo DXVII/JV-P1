@@ -11,28 +11,33 @@ All Sprites have:
 						note player omitted due to separate player class)
 */
 public class Sprite {
-
-	private static float x;
-	private static float y;
-	//private String tileID;
-	private static Image pic;
-	//private String image_src;
+	//x&y represent the pixel locations of floor tiles
+	private float x;
+	private float y;
+	private Image pic;
 
 	public Sprite(String image_src, float x, float y) throws SlickException {
-		Sprite.x = x;
-		Sprite.y = y;
+		System.out.println("Sprite under construction");
+		this.x = x;
+		this.y = y;
 		//this.tileID = image_src;
 		if(image_src.equals("floor")){
 			pic = new Image(World.FLOOR_LOC);
+			System.out.println("recognised image");
 		}
 		else if(image_src.equals("stone")){
 			pic = new Image(World.STONE_LOC);
+			System.out.println("recognised image");
 		}
 		else if(image_src.equals("wall")){
 			pic = new Image(World.WALL_LOC);
+			System.out.println("recognised image");
 		}
 		else if(image_src.equals("target")){
 			pic = new Image(World.TARGET_LOC);
+			System.out.println("recognised image");
+		} else{
+			System.out.println("unrecognised image");
 		}
 	}
 
@@ -40,36 +45,40 @@ public class Sprite {
 	}
 
 	public void render(Graphics g) {
-		pic.draw(x,y);
+		pic.draw(this.x,this.y);
+		System.out.println("pic drawn");
+
 	}
-	
-//Getters 'n' Setters	
+	///////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// Getters and Setters //////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////
+
 	//pic
 	public Image getPic() {
-        return pic;
+        return this.pic;
     }
 
-    public static void setPic(Image playerPic) {
-        pic = playerPic;
+    public void setPic(Image playerPic) {
+        this.pic = playerPic;
     }
-    
-    
+
+
     //xPixel
     public float getX() {
-        return x;
+        return this.x;
     }
 
-    public static void setX(float xPixel) {
-        x = xPixel;
+    public void setX(float xPixel) {
+        this.x = xPixel;
     }
-    
-    
+
+
     //yPixel
     public float getY() {
-        return x;
+        return this.y;
     }
 
-    public static void setY(float yPixel) {
-        y = yPixel;
+    public void setY(float yPixel) {
+        this.y = yPixel;
     }
 }

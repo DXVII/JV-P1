@@ -19,7 +19,8 @@ public class App extends BasicGame {
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
     public static final int TILE_SIZE = 32;
-    public static final String LVL_TXT = "res/levels/lvl.csv";
+
+
     public App() {
       super("Shadow Blocks");
     }
@@ -47,10 +48,11 @@ public class App extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         // Get data about the current input (keyboard state).
         Input input = gc.getInput();
+        world.update(input, delta);
+        //Escape Command
         if(input.isKeyPressed(Input.KEY_ESCAPE)){
             System.exit(0);
         }
-        world.update(input, delta);
     }
 
 
