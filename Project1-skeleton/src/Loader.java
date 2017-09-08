@@ -2,7 +2,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import org.newdawn.slick.SlickException;
-import java.util.Arrays;
 import java.io.BufferedReader;
 
 
