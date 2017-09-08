@@ -5,8 +5,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class World {
-	// Where things  exist in this world
-
+	// Where things exist in this world (note renamed to lvl.csv)
 	public static final String LVL_TXT = "Project1-skeleton/src/res/lvl.csv";
 
 	//the player and the floor layout

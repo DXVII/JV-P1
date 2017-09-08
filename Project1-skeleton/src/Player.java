@@ -3,11 +3,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Graphics;
 
 //player is an extension of Sprite
-/*
-player variant has extra:
-tile location (to check against "Loader.isBlocked")
-Still unsure about the rendering and how it works with super classes
-*/
 
 public class Player extends Sprite {
 
@@ -22,12 +17,12 @@ public class Player extends Sprite {
 		Player.xPos = xPos;
 		Player.yPos = yPos;
 	}
-
+	//player movement
 	public void update(Input input, int delta) {
-		//fix ypos limit to is blocked, declare UDLR constants
 		float x = super.getX();
 		float y = super.getY();
 
+		//UDLR movment commands
 		if (input.isKeyPressed(Input.KEY_UP)
 		&& (!World.isBlocked(xPos,yPos-STEP))) {
 			y -= App.TILE_SIZE;
@@ -48,6 +43,7 @@ public class Player extends Sprite {
 			x += App.TILE_SIZE;
 			xPos += STEP;
 		}
+		//movement reassigned to be redrawn
 		super.setX(x);
 		super.setY(y);
 	}

@@ -7,16 +7,15 @@ import java.io.BufferedReader;
 
 /*
 Loader class has:
-isBlocked: 		static 2D boolean  array to track if a position in a map is not traversible
-
-loadSprite: 	- points to Player player and assigns its pixel location
-				  and 2D array tile postion
- 				- creates 1D array of Sprites passing in pixel location into them
-				- returns above array(1D) to floorArray in World
+loadSprite: 	- player:
+					created and assigned to player (in World)
+ 				- list:
+					1D array of Sprites list to be passed to floorArray (in World)
+				- blockedArray:
+					2D array boolean, map of where you can't go
 */
 
 public class Loader {
-	//Used for CSV: no magic numbers
 	//sprite indexing
 	public static final int TILE_TYPE = 0;
 	public static final int X_COORD = 1;
@@ -70,13 +69,13 @@ public class Loader {
 		    String text;
 		//Begin loop
 		    while ((text = br.readLine()) != null) {
-
+				//reducing horizontal code length
 				txtRow = text.split(",");
-
 				tileType = txtRow[TILE_TYPE];
 		        xCoord = Integer.parseInt((txtRow[X_COORD]).trim());
 		        yCoord = Integer.parseInt((txtRow[Y_COORD]).trim());
-		        //finding the pixel location with centering shift applied
+
+				//finding the pixel location with centering shift applied
 		        xPix = (float) (App.TILE_SIZE*xCoord + xDim);
 		        yPix = (float) (App.TILE_SIZE*yCoord + yDim);
 
@@ -84,28 +83,31 @@ public class Loader {
 
 				//separate map tiles from player and checking blocked
 		        if(!tileType.equals("player")) {
-		            //generating floor plan
+
+					//generating floor plan
 					Sprite tmpSprite = new Sprite(tileType, xPix, yPix);
 					list.add(tmpSprite);
-		            //generating array of blocked walls
+
+					//generating array of blocked walls
 		            if(tileType.equals("wall")){
 						blockedArray[xCoord][yCoord] = true;
 		            } else {
 		                blockedArray[xCoord][yCoord] = false;
 		            }
-
+				//player
 		        } else {
 		            Player player = new Player(tileType, xPix, yPix, xCoord, yCoord);
 					World.setPlayer(player);
 		        }
 
 		    }
+			//blockedArray passed to World
 			World.setBlockedArray(blockedArray);
 
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
-
+		//list passed back to floor array 
 		return list.toArray(new Sprite[list.size()]);
 	}
 }

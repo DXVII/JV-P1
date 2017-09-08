@@ -6,9 +6,8 @@ import org.newdawn.slick.Image;
 // generic class that repesent all worldly objects
 /*
 All Sprites have:
-- pixel locations (x & y)
-- unique identity (and a visual location,
-						note player omitted due to separate player class)
+	- pixel locations (x & y)
+	- a picture 
 */
 public class Sprite {
 	public static final String PLAYER_LOC = "Project1-skeleton/src/res/player_left.png";
