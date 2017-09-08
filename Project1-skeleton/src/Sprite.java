@@ -11,33 +11,34 @@ All Sprites have:
 						note player omitted due to separate player class)
 */
 public class Sprite {
-	//x&y represent the pixel locations of floor tiles
+	public static final String PLAYER_LOC = "Project1-skeleton/src/res/player_left.png";
+	public static final String FLOOR_LOC = "Project1-skeleton/src/res/floor.png";
+	public static final String STONE_LOC = "Project1-skeleton/src/res/stone.png";
+	public static final String WALL_LOC = "Project1-skeleton/src/res/wall.png";
+	public static final String TARGET_LOC = "Project1-skeleton/src/res/target.png";
+
+	//x & y represent the pixel locations of floor tiles
 	private float x;
 	private float y;
 	private Image pic;
 
 	public Sprite(String image_src, float x, float y) throws SlickException {
-		System.out.println("Sprite under construction");
 		this.x = x;
 		this.y = y;
-		//this.tileID = image_src;
 		if(image_src.equals("floor")){
-			pic = new Image(World.FLOOR_LOC);
-			System.out.println("recognised image");
+			pic = new Image(FLOOR_LOC);
 		}
 		else if(image_src.equals("stone")){
-			pic = new Image(World.STONE_LOC);
-			System.out.println("recognised image");
+			pic = new Image(STONE_LOC);
 		}
 		else if(image_src.equals("wall")){
-			pic = new Image(World.WALL_LOC);
-			System.out.println("recognised image");
+			pic = new Image(WALL_LOC);
 		}
 		else if(image_src.equals("target")){
-			pic = new Image(World.TARGET_LOC);
-			System.out.println("recognised image");
-		} else{
-			System.out.println("unrecognised image");
+			pic = new Image(TARGET_LOC);
+		}
+		else if(image_src.equals("player")){
+			pic = new Image(PLAYER_LOC);
 		}
 	}
 
@@ -46,22 +47,11 @@ public class Sprite {
 
 	public void render(Graphics g) {
 		pic.draw(this.x,this.y);
-		System.out.println("pic drawn");
 
 	}
 	///////////////////////////////////////////////////////////////////////////////
 	//////////////////////////// Getters and Setters //////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
-
-	//pic
-	public Image getPic() {
-        return this.pic;
-    }
-
-    public void setPic(Image playerPic) {
-        this.pic = playerPic;
-    }
-
 
     //xPixel
     public float getX() {
@@ -71,7 +61,6 @@ public class Sprite {
     public void setX(float xPixel) {
         this.x = xPixel;
     }
-
 
     //yPixel
     public float getY() {
