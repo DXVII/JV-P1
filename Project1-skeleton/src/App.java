@@ -3,7 +3,6 @@
  * by Eleanor McMurtry
  */
 import java.io.FileNotFoundException;
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -25,7 +24,7 @@ public class App extends BasicGame {
       super("Shadow Blocks");
     }
 
-
+    //Everything is handled in here!!!
     private static World world;
 
     @Override
@@ -37,8 +36,6 @@ public class App extends BasicGame {
 			e.printStackTrace();
 		}
     }
-
-
 
     /** UPDATE the game state for a frame.
      * @param gc The Slick game container object.

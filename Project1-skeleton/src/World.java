@@ -6,7 +6,6 @@ import org.newdawn.slick.SlickException;
 
 public class World {
 	// Where things  exist in this world
-
 	public static final String LVL_TXT = "Project1-skeleton/src/res/lvl.csv";
 
 	//the player and the floor layout
@@ -23,12 +22,12 @@ public class World {
 		floorArray = Loader.loadSprites(World.LVL_TXT);
 	}
 
-	//update only affect player sprite
+	//update only affects player sprite
 	public void update(Input input, int delta) {
 		player.update(input, delta);
 	}
 
-	// render floor then player to enure player is always after
+	// render floor then player to ensure player is always above map
 	public void render(Graphics g) {
 		for (Sprite spriteTile : floorArray) {
 			spriteTile.render(g);
@@ -36,8 +35,7 @@ public class World {
 		player.render(g);
 	}
 
-	// Converts a world coordinate to a tile coordinate,
-	// and returns if that location is a blocked tile
+	// returns if that location is a blocked tile
 	public static boolean isBlocked(int xPos, int yPos) {
 		return blockedArray[xPos][yPos];
 	}

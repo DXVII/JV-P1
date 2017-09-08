@@ -7,24 +7,31 @@ import java.io.BufferedReader;
 
 /*
 Loader class has:
-isBlocked: 		static 2D boolean  array to track if a position in a map is not traversible
-
-loadSprite: 	- points to Player player and assigns its pixel location
-				  and 2D array tile postion
- 				- creates 1D array of Sprites passing in pixel location into them
-				- returns above array(1D) to floorArray in World
+	loadSprite:
+		- *list* creates 1D array of Sprites assigning their:
+			+ type
+			+ pixel location
+			-> list is passed to World floorArray
+		- creates player sprite assigning its:
+			+ type
+			+ pixel location
+			+ 2D array tile postion
+			-> passed via setPlayer
+		- creates 2D array of boolean blockedArray:
+			+ map of if a player can move "here"
+			-> passed via setBlockedArray
 */
 
 public class Loader {
-	//Used for CSV: no magic numbers
-	//sprite indexing
-	public static final int TILE_TYPE = 0;
-	public static final int X_COORD = 1;
-	public static final int Y_COORD = 2;
 	//dimension indexing
 	public static final int X_POS = 0;
 	public static final int Y_POS = 1;
 
+	//sprite indexing
+	public static final int TILE_TYPE = 0;
+	public static final int X_COORD = 1;
+	public static final int Y_COORD = 2;
+	// Map of where the world is blocked
 	private static boolean[][] blockedArray;
 
 	/**
@@ -72,14 +79,14 @@ public class Loader {
 		    while ((text = br.readLine()) != null) {
 
 				txtRow = text.split(",");
-
+				//done to reduce horizontal code length
 				tileType = txtRow[TILE_TYPE];
 		        xCoord = Integer.parseInt((txtRow[X_COORD]).trim());
 		        yCoord = Integer.parseInt((txtRow[Y_COORD]).trim());
-		        //finding the pixel location with centering shift applied
+
+				//finding the pixel location with centering shift applied
 		        xPix = (float) (App.TILE_SIZE*xCoord + xDim);
 		        yPix = (float) (App.TILE_SIZE*yCoord + yDim);
-
 
 
 				//separate map tiles from player and checking blocked
@@ -87,21 +94,23 @@ public class Loader {
 		            //generating floor plan
 					Sprite tmpSprite = new Sprite(tileType, xPix, yPix);
 					list.add(tmpSprite);
+
 		            //generating array of blocked walls
 		            if(tileType.equals("wall")){
 						blockedArray[xCoord][yCoord] = true;
 		            } else {
 		                blockedArray[xCoord][yCoord] = false;
 		            }
-
+				//player created and passed back
 		        } else {
 		            Player player = new Player(tileType, xPix, yPix, xCoord, yCoord);
 					World.setPlayer(player);
 		        }
 
 		    }
+			//blockedArray passed to world
 			World.setBlockedArray(blockedArray);
-
+		
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}

@@ -24,10 +24,10 @@ public class Player extends Sprite {
 	}
 
 	public void update(Input input, int delta) {
-		//fix ypos limit to is blocked, declare UDLR constants
+
 		float x = super.getX();
 		float y = super.getY();
-
+		//UDLR player controls
 		if (input.isKeyPressed(Input.KEY_UP)
 		&& (!World.isBlocked(xPos,yPos-STEP))) {
 			y -= App.TILE_SIZE;
@@ -48,6 +48,7 @@ public class Player extends Sprite {
 			x += App.TILE_SIZE;
 			xPos += STEP;
 		}
+		//movement commands returned to be rendered
 		super.setX(x);
 		super.setY(y);
 	}
