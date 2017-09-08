@@ -39,20 +39,23 @@ public class Loader {
 	public static Sprite[] loadSprites(String filename)
 	throws SlickException, FileNotFoundException {
 
-		//Building my array list
+		//Building my array list to be returned to world
 		ArrayList<Sprite> list = new ArrayList<Sprite>();
 
+		//SAFETY
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-			//read first line to obtain level dimensions
+
+		//read first line to obtain level dimensions
 		    String[] txtRow = (br.readLine()).split(",");
-			//extract from file -> int
+
+			//extract from file convert int
 		    int xDim = Integer.parseInt((txtRow[X_POS]).trim());
 		    int yDim = Integer.parseInt((txtRow[Y_POS]).trim());
 
 			// 2D array of where a player cannot move
 			blockedArray = new boolean[xDim][yDim];
 
-		    //xyDim converted to xyPix to centre shift sprite tiles
+		    //x & y Pix's shift sprite tiles to centred
 		    xDim = (App.SCREEN_WIDTH-(App.TILE_SIZE*xDim))/2;
 		    yDim = (App.SCREEN_HEIGHT-(App.TILE_SIZE*yDim))/2;
 
@@ -70,7 +73,6 @@ public class Loader {
 		    while ((text = br.readLine()) != null) {
 
 				txtRow = text.split(",");
-				//System.out.println(Arrays.toString(txtRow));
 
 				tileType = txtRow[TILE_TYPE];
 		        xCoord = Integer.parseInt((txtRow[X_COORD]).trim());
@@ -84,21 +86,17 @@ public class Loader {
 				//separate map tiles from player and checking blocked
 		        if(!tileType.equals("player")) {
 		            //generating floor plan
-					System.out.println("floor tile");
 					Sprite tmpSprite = new Sprite(tileType, xPix, yPix);
 					list.add(tmpSprite);
 		            //generating array of blocked walls
 		            if(tileType.equals("wall")){
-						System.out.println("\t- I am also a wall");
-		                blockedArray[xCoord][yCoord] = true;
+						blockedArray[xCoord][yCoord] = true;
 		            } else {
 		                blockedArray[xCoord][yCoord] = false;
 		            }
 
 		        } else {
-		            System.out.println("player detected");
 		            Player player = new Player(tileType, xPix, yPix, xCoord, yCoord);
-					System.out.println("player made");
 					World.setPlayer(player);
 		        }
 
