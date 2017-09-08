@@ -2,6 +2,8 @@
  * Project skeleton for SWEN20003: Object Oriented Software Development 2017
  * by Eleanor McMurtry
  */
+import java.io.FileNotFoundException;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -17,21 +19,23 @@ public class App extends BasicGame {
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
     public static final int TILE_SIZE = 32;
-    public static final String PLAYER_LOC = "res/player_left.png";
+
 
     public App() {
       super("Shadow Blocks");
     }
 
 
-    private World world;
-    private Sprite player;
+    private static World world;
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-    	world = new World();
-        // Sprite starts in middle
-        player = new Sprite(PLAYER_LOC,SCREEN_WIDTH/2,SCREEN_HEIGHT/2);
+    	try {
+			world = new World();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 
@@ -44,12 +48,11 @@ public class App extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         // Get data about the current input (keyboard state).
         Input input = gc.getInput();
+        world.update(input, delta);
+        //Escape Command
         if(input.isKeyPressed(Input.KEY_ESCAPE)){
             System.exit(0);
         }
-        world.update(input, delta);
-        //Commands given to sprite
-        player.update(input,delta);
     }
 
 
@@ -60,8 +63,6 @@ public class App extends BasicGame {
      */
     public void render(GameContainer gc, Graphics g) throws SlickException {
     	world.render(g);
-        //Draw sprite in new location movement calculated
-        player.render(g);
     }
 
 
